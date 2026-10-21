@@ -5,8 +5,8 @@ ParadoxLab CLI is a coding and research assistant maintained by Anand Damdiyal.
 Product website: [paradoxlab.in](https://paradoxlab.in).
 GitHub releases: [Windows and Linux downloads](https://github.com/Damdiyal/paradox-cli/releases).
 
-A verified release is being prepared. Download assets only after the release is
-published. Each release includes platform archives and SHA-256 checksums.
+Download published assets from the Releases page. Each release includes
+platform archives and SHA-256 checksums.
 
 ## Use
 
