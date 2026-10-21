@@ -1,0 +1,32 @@
+name: Verify public repository contents
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          persist-credentials: false
+      - name: Enforce public content allowlist
+        shell: bash
+        run: |
+          set -euo pipefail
+          while IFS= read -r -d '' file; do
+            case "$file" in
+              README.md|LICENSE|NOTICE|.gitignore|.gitattributes) ;;
+              .github/workflows/verify-public-content.yml|.github/workflows/promote-release.yml) ;;
+              scripts/verify_release.py|scripts/release_snapshot.py) ;;
+              scripts/installation/install-paradox-standalone.sh|scripts/installation/install-paradox-standalone.ps1|scripts/installation/install-paradox-standalone.bat) ;;
+              scripts/installation/install-opentui-preview.sh|scripts/installation/install-opentui-preview.ps1) ;;
+              scripts/installation/uninstall-paradox-standalone.sh|scripts/installation/uninstall-paradox-standalone.ps1) ;;
+              *) echo "::error::Unexpected public file: $file"; exit 1 ;;
+            esac
+          done < <(git ls-files -z)
+          python3 -m py_compile scripts/verify_release.py scripts/release_snapshot.py

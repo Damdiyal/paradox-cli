@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+candidate/
+extracted/
+verification/
+*-snapshot.json
