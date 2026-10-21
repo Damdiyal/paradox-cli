@@ -46,5 +46,6 @@ verification automation. Development source, internal logs, and source history
 are maintained privately. Release archives contain executable application code
 and redistributable dependencies.
 
-See [LICENSE](LICENSE), [NOTICE](NOTICE), and the component licenses and notices
-included with each release for applicable terms.
+The project uses the standard Apache-2.0 license; no custom or separate
+commercial license is added. See [LICENSE](LICENSE), [NOTICE](NOTICE), and the
+component licenses and notices included with each release for applicable terms.
