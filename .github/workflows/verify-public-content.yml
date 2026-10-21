@@ -20,7 +20,7 @@ jobs:
           set -euo pipefail
           while IFS= read -r -d '' file; do
             case "$file" in
-              README.md|LICENSE|NOTICE|.gitignore|.gitattributes) ;;
+              README.md|LICENSE|NOTICE|.gitignore|.gitattributes|docs/qqbot.md) ;;
               .github/workflows/verify-public-content.yml|.github/workflows/promote-release.yml) ;;
               scripts/verify_release.py|scripts/release_snapshot.py) ;;
               scripts/installation/install-paradox-standalone.sh|scripts/installation/install-paradox-standalone.ps1|scripts/installation/install-paradox-standalone.bat) ;;

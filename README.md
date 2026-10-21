@@ -19,6 +19,8 @@ Supported release targets are Linux x64, Linux arm64, and Windows x64.
 macOS releases are retired. Optional microphone features require an input device
 and operating-system permission. Financial research features do not place trades.
 
+For optional QQ bot setup and QR login connector installation, see [the QQ guide](docs/qqbot.md).
+
 ## Updates and support
 
 Use the [Releases page](https://github.com/Damdiyal/paradox-cli/releases) for
