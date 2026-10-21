@@ -22,6 +22,9 @@ jobs:
             case "$file" in
               README.md|LICENSE|NOTICE|.gitignore|.gitattributes|docs/qqbot.md) ;;
               .github/workflows/verify-public-content.yml|.github/workflows/promote-release.yml) ;;
+              .github/workflows/paradox-agent.yml) ;;
+              examples/workflows/paradox-dispatch/paradox-dispatch.yml|examples/workflows/paradox-assistant/paradox-invoke.yml) ;;
+              examples/workflows/issue-triage/paradox-triage.yml|examples/workflows/issue-triage/paradox-scheduled-triage.yml|examples/workflows/pr-review/paradox-review.yml) ;;
               scripts/verify_release.py|scripts/release_snapshot.py) ;;
               scripts/installation/install-paradox-standalone.sh|scripts/installation/install-paradox-standalone.ps1|scripts/installation/install-paradox-standalone.bat) ;;
               scripts/installation/install-opentui-preview.sh|scripts/installation/install-opentui-preview.ps1) ;;

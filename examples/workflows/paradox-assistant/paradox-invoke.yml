@@ -1,0 +1,25 @@
+# Installed by paradox setup-github; configure the repository secret and variables below.
+name: 'Invoke ParadoxLab'
+on:
+  workflow_dispatch:
+    inputs:
+      prompt:
+        description: Repository task
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  issues: read
+  pull-requests: read
+
+jobs:
+  assistant:
+    uses: Damdiyal/paradox-cli/.github/workflows/paradox-agent.yml@__PARADOX_RELEASE_TAG__
+    with:
+      prompt: '${{ inputs.prompt }}'
+      model: ${{ vars.PARADOX_MODEL }}
+      base-url: ${{ vars.PARADOX_BASE_URL }}
+      release-tag: __PARADOX_RELEASE_TAG__
+    secrets:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}

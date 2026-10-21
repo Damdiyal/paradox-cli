@@ -21,6 +21,20 @@ and operating-system permission. Financial research features do not place trades
 
 For optional QQ bot setup and QR login connector installation, see [the QQ guide](docs/qqbot.md).
 
+## GitHub automation
+
+After the first release is published, run `paradox setup-github` in a GitHub
+repository to install dispatch, assistant, issue triage, scheduled triage and
+pull request review workflows. Set the `OPENAI_API_KEY` repository secret and
+`PARADOX_MODEL` and `PARADOX_BASE_URL` repository variables to your provider.
+The generated workflows call this repository's versioned reusable workflow,
+install the checksum-verified CLI archive, and retain the assistant report as
+a workflow artifact. They use read access and do not publish comments or push
+changes. Scheduled triage runs on weekdays; adjust its cron to your needs.
+
+The files under `examples/workflows` are templates: `setup-github` replaces
+`__PARADOX_RELEASE_TAG__` with the published release tag before writing them.
+
 ## Updates and support
 
 Use the [Releases page](https://github.com/Damdiyal/paradox-cli/releases) for

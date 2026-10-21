@@ -1,0 +1,26 @@
+# Installed by paradox setup-github; configure the repository secret and variables below.
+name: 'Review pull request'
+on:
+  workflow_dispatch:
+    inputs:
+      number:
+        description: Issue or pull request number
+        required: true
+        type: number
+
+permissions:
+  contents: read
+  issues: read
+  pull-requests: read
+
+jobs:
+  assistant:
+    uses: Damdiyal/paradox-cli/.github/workflows/paradox-agent.yml@__PARADOX_RELEASE_TAG__
+    with:
+      prompt: 'Review the supplied pull request diff for concrete defects'
+      model: ${{ vars.PARADOX_MODEL }}
+      base-url: ${{ vars.PARADOX_BASE_URL }}
+      release-tag: __PARADOX_RELEASE_TAG__
+      pull-request-number: ${{ inputs.number }}
+    secrets:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
