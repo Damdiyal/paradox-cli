@@ -52,6 +52,12 @@ def verify(directory, target, destination, tag, snapshot_file):
         if (path.is_absolute() or '..' in path.parts or '\\' in name
                 or ':' in name or not path.parts or path.parts[0] != 'paradoxcli'):
             raise ValueError('Unsafe archive path')
+        public_root = {
+            'bin', 'lib', 'node', 'manifest.json', 'package.json',
+            'LICENSE', 'NOTICE', 'NOTICES.txt', 'README.md',
+        }
+        if len(path.parts) > 1 and path.parts[1] not in public_root:
+            raise ValueError('Unexpected top-level release content')
         private = {'.git', '.paradox', '.qwen', 'fix.md', 'plan.md', '.env', 'oauth_creds.json'}
         if private.intersection(path.parts):
             raise ValueError('Private file in release archive')
@@ -89,6 +95,8 @@ def verify(directory, target, destination, tag, snapshot_file):
     for name in ('LICENSE', 'NOTICE', 'NOTICES.txt', 'README.md'):
         if not (root / name).is_file():
             raise ValueError(f'Missing {name}')
+    if 'License text not found.' in (root / 'NOTICES.txt').read_text(encoding='utf-8'):
+        raise ValueError('Unresolved dependency license text in release')
     launcher = root / 'bin' / ('paradox.cmd' if os.name == 'nt' else 'paradox')
     command = ['cmd', '/d', '/c', str(launcher)] if os.name == 'nt' else [str(launcher)]
     version = subprocess.check_output(command + ['--version'], text=True, timeout=60)
